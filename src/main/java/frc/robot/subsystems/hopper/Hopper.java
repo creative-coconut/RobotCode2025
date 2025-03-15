@@ -20,22 +20,18 @@ public class Hopper extends SubsystemBase {
   public Hopper() {}
 
   public Command runLeft(double speed){
-    System.out.println("run left");
     return runOnce(() -> hopperA.set(speed));
   }
 
   public Command reverseLeft(double speed){
-    System.out.println("reverse left");
     return runOnce(() -> hopperA.set(-speed));
   }
 
   public Command runRight(double speed){
-    System.out.println("run right");
     return runOnce(() -> hopperB.set(-speed));
   }
 
   public Command reverseRight(double speed){
-    System.out.println("reverse right");
     return runOnce(() -> hopperB.set(speed));
   }
   

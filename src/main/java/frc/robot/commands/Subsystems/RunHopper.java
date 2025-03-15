@@ -7,6 +7,7 @@ package frc.robot.commands.Subsystems;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.hopper.Hopper;
 
+
 public class RunHopper extends Command {
   private final Hopper hopperSubsystem;
 
