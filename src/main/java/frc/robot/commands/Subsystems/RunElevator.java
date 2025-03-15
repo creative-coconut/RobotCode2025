@@ -21,22 +21,23 @@ public class RunElevator extends Command {
   }
 
   public Command grab(){
-    return runOnce(() -> elevatorSubsystem.setPosition(elevatorSubsystem.heights[1]))
-          .andThen(() -> armSubsystem.setPosition(armSubsystem.angles[1]))
-          .andThen(() -> intakeSubsystem.runIntake(intakeSubsystem.intakeSpeed))
-          .andThen(() -> elevatorSubsystem.setPosition(elevatorSubsystem.heights[1]));
+    return elevatorSubsystem.runOnce(() -> elevatorSubsystem.setPosition(elevatorSubsystem.elevatorSpeed, elevatorSubsystem.heights[1]))
+                            .andThen(() -> armSubsystem.setPosition(armSubsystem.angles[4]))
+                            .andThen(() -> intakeSubsystem.runIntake(intakeSubsystem.intakeSpeed))
+                            .andThen(() -> elevatorSubsystem.setPosition(elevatorSubsystem.elevatorSpeed, elevatorSubsystem.heights[4]))
+                            .andThen(rest());
   }
 
-  public Command restPosition(){
-    return runOnce(() -> intakeSubsystem.runIntake(0))
-          .andThen(() -> armSubsystem.setPosition(0))
-          .andThen(() -> elevatorSubsystem.setPosition(0));
+  public Command rest(){
+    return elevatorSubsystem.runOnce(() -> intakeSubsystem.runIntake(0))
+                            .andThen(() -> armSubsystem.setPosition(0))
+                            .andThen(() -> elevatorSubsystem.setPosition(elevatorSubsystem.elevatorSpeed, 0));
   }
 
   public Command setPosition(int p){
-    return runOnce(() -> intakeSubsystem.runIntake(intakeSubsystem.intakeSpeed))
-          .andThen(() -> armSubsystem.setPosition(armSubsystem.angles[p]))
-          .andThen(() -> elevatorSubsystem.setPosition(elevatorSubsystem.heights[p]));
+    return elevatorSubsystem.runOnce(() -> elevatorSubsystem.setPosition(elevatorSubsystem.elevatorSpeed, elevatorSubsystem.heights[p]))
+                            .andThen(() -> armSubsystem.setPosition(armSubsystem.angles[p]))
+                            .andThen(() -> intakeSubsystem.runIntake(intakeSubsystem.intakeSpeed));
   }
 
 
