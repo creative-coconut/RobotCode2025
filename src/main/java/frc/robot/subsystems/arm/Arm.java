@@ -30,6 +30,6 @@ public class Arm extends SubsystemBase {
 
   public void setPosition(double p){
     currentPosition = p;
-
+    //set arm position
   }
 }
