@@ -30,7 +30,6 @@ public class Elevator extends SubsystemBase {
   }
 
   public void set(double speed, double position){
-    Timer t = new Timer();
     currentPosition = position;
     elevatorA.set(speed);
     elevatorB.set(-speed);
