@@ -3,25 +3,57 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.732069672131147,
-        "y": 5.469518442622951
+        "x": 7.595249999997515,
+        "y": 6.228500000002402
       },
       "prevControl": null,
       "nextControl": {
-        "x": 8.73206967213115,
-        "y": 5.469518442622951
+        "x": 6.665289279823584,
+        "y": 6.596158889373492
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 5.190676229508196,
-        "y": 5.241752049180327
+        "x": 5.128499999997515,
+        "y": 5.224250000002402
       },
       "prevControl": {
-        "x": 5.466393442622952,
-        "y": 5.889088114754098
+        "x": 5.322640453282713,
+        "y": 4.8521474645391045
+      },
+      "nextControl": {
+        "x": 4.426499999997515,
+        "y": 6.569750000002402
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 1.2284999999975144,
+        "y": 7.008500000002402
+      },
+      "prevControl": {
+        "x": 1.5794999999975143,
+        "y": 6.755000000002402
+      },
+      "nextControl": {
+        "x": 0.8795286511004536,
+        "y": 7.2605348630947235
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 3.841499999997515,
+        "y": 5.224250000002402
+      },
+      "prevControl": {
+        "x": 3.9391416830329553,
+        "y": 4.994106345442893
       },
       "nextControl": null,
       "isLocked": false,
@@ -30,13 +62,30 @@
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 0.5,
-      "rotationDegrees": -35.03083654126997
+      "waypointRelativePos": 1.0,
+      "rotationDegrees": -119.84593194968734
+    },
+    {
+      "waypointRelativePos": 2,
+      "rotationDegrees": 126.02737338510364
     }
   ],
   "constraintZones": [],
   "pointTowardsZones": [],
-  "eventMarkers": [],
+  "eventMarkers": [
+    {
+      "name": "Score",
+      "waypointRelativePos": 0,
+      "endWaypointRelativePos": null,
+      "command": null
+    },
+    {
+      "name": "Intake from Station",
+      "waypointRelativePos": 0,
+      "endWaypointRelativePos": 0,
+      "command": null
+    }
+  ],
   "globalConstraints": {
     "maxVelocity": 3.0,
     "maxAcceleration": 3.0,
@@ -47,7 +96,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -31.184974658738465
+    "rotation": -61.60698057861704
   },
   "reversed": false,
   "folder": null,
