@@ -29,7 +29,7 @@ public class RunElevator extends Command {
   }
 
   public Command rest(){
-    return elevatorSubsystem.runOnce(() -> intakeSubsystem.runIntake(0))
+    return elevatorSubsystem.runOnce(() -> intakeSubsystem.stopIntake())
                             .andThen(() -> armSubsystem.setPosition(0))
                             .andThen(() -> elevatorSubsystem.setPosition(elevatorSubsystem.elevatorSpeed, 0));
   }

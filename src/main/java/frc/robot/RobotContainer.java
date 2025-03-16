@@ -129,21 +129,23 @@ public class RobotContainer
                               ));
     
     /**button commands**/
-    //hopper controls
+    //hopper in
     new JoystickButton(otherManipXbox, 5).onTrue(hopper.runLeft(hopper.hopperSpeed));
     new JoystickButton(otherManipXbox, 5).onTrue(hopper.runRight(hopper.hopperSpeed));
-    new JoystickButton(otherManipXbox, 6).onTrue(hopper.reverseLeft(hopper.reverseHopperSpeed));
-    new JoystickButton(otherManipXbox, 6).onTrue(hopper.reverseRight(hopper.reverseHopperSpeed));    
     new JoystickButton(otherManipXbox, 5).onFalse(hopper.runLeft(0));
     new JoystickButton(otherManipXbox, 5).onFalse(hopper.runRight(0));
+    
+    //hopper out
+    new JoystickButton(otherManipXbox, 6).onTrue(hopper.reverseLeft(hopper.reverseHopperSpeed));
+    new JoystickButton(otherManipXbox, 6).onTrue(hopper.reverseRight(hopper.reverseHopperSpeed));    
     new JoystickButton(otherManipXbox, 6).onFalse(hopper.reverseLeft(0));
     new JoystickButton(otherManipXbox, 6).onFalse(hopper.reverseRight(0));
     
-    //intake
-   // new JoystickButton(otherManipXbox, 2).onTrue(intake.run(intake.intakeSpeed));
-    //new JoystickButton(otherManipXbox, 2).onFalse(intake.checkIfRunning());
-    /*
-    //elevator + arm + intake
+    //intake controls
+    new JoystickButton(otherManipXbox, 2).onTrue(intake.run(intake.intakeSpeed*-1));
+    new JoystickButton(otherManipXbox, 2).onFalse(intake.checkIfRunning());
+    
+    //elevator + arm + intake system
     new JoystickButton(otherManipXbox, 3).onTrue(system.grab());
     new JoystickButton(otherManipXbox, 4).onTrue(system.rest());
     new POVButton(otherManipXbox, 0).onTrue(system.setPosition(0));

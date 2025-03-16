@@ -16,7 +16,7 @@ public class Arm extends SubsystemBase {
   public SparkMax arm = new SparkMax(13, MotorType.kBrushless);
   private RelativeEncoder encoder = arm.getAlternateEncoder();
 
-  public double armSpeed = 0.01;
+  public double armSpeed = 0.1;
   public double[] angles = {0, 35, 35, 90, 180}; //angles in degrees from vertical
 //                          L1 L2  L3  L4  grab
   public double currentPosition = 0.0;
@@ -30,7 +30,7 @@ public class Arm extends SubsystemBase {
 
   public void setPosition(double p){
     currentPosition = p;
-    encoder.setPosition(p/72);
+    encoder.setPosition(p/72); //5 motor rotations = 1 arm rotation
   }
 }
 */
