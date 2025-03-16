@@ -15,10 +15,28 @@ public class Intake extends SubsystemBase {
   
     public double intakeSpeed = 0.4; //from 2024 code, untested
     public double outtakeSpeed = -.5; //from 2024 code, untested
+    public boolean isRunning = false;
 
     public Intake() {}
     public void runIntake(double speed){
       intake.set(speed);
+      isRunning = true;
+    }
+
+    public void stopIntake(){
+      intake.set(0);
+      isRunning = false;
+    }
+
+    public Command run(double speed){
+      return runOnce(() -> runIntake(speed));
+    }
+
+    public Command checkIfRunning(){
+      if(isRunning){
+        return runOnce(() -> stopIntake());
+      }
+      return null;
     }
 
     //Commands for use when constructing Autos

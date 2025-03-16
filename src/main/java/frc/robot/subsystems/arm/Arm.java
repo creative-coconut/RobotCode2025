@@ -6,15 +6,19 @@ package frc.robot.subsystems.arm;
 
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.SparkMax;
-
+import com.revrobotics.RelativeEncoder;
+//import com.revrobotics.spark.SparkRelativeEncoder;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Arm extends SubsystemBase {
-  public SparkMax arm = new SparkMax(13, MotorType.kBrushless);
+  private double[] PID = {4.25, 0, 0.6};
 
-  public double armSpeed;
-  public double[] angles = {0,   0,   35,  35,  90}; //angles in degrees from vertical
-//                          rest L1   L2   L3   L4
+  public SparkMax arm = new SparkMax(13, MotorType.kBrushless);
+  private RelativeEncoder encoder = arm.getAlternateEncoder();
+
+  public double armSpeed = 0.01;
+  public double[] angles = {0, 35, 35, 90, 180}; //angles in degrees from vertical
+//                          L1 L2  L3  L4  grab
   public double currentPosition = 0.0;
 
 
@@ -26,7 +30,7 @@ public class Arm extends SubsystemBase {
 
   public void setPosition(double p){
     currentPosition = p;
-
+    encoder.setPosition(p/72);
   }
 }
 */
