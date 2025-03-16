@@ -22,11 +22,11 @@ import edu.wpi.first.math.filter.Debouncer.DebounceType;
 import edu.wpi.first.wpilibj.smartdashboard.*;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Subsystems.RunHopper;
-import frc.robot.commands.Subsystems.RunElevator;
+//import frc.robot.commands.Subsystems.RunElevator;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
 import frc.robot.subsystems.hopper.Hopper;
-import frc.robot.subsystems.elevator.Elevator;
-import frc.robot.subsystems.arm.Arm;
+//import frc.robot.subsystems.elevator.Elevator;
+//import frc.robot.subsystems.arm.Arm;
 import frc.robot.subsystems.intake.Intake;
 //import frc.robot.subsystems.PhotonVision;
 import com.pathplanner.lib.auto.NamedCommands;
@@ -42,8 +42,8 @@ import com.pathplanner.lib.auto.AutoBuilder;
  */
 public class RobotContainer
 {
-  private final Elevator elevator = new Elevator();
-  private final Arm arm = new Arm();
+  //private final Elevator elevator = new Elevator();
+ // private final Arm arm = new Arm();
   private final Intake intake = new Intake();
   private final Hopper hopper = new Hopper();
 
@@ -140,7 +140,7 @@ public class RobotContainer
     new JoystickButton(otherManipXbox, 6).onFalse(hopper.reverseLeft(0));
     new JoystickButton(otherManipXbox, 6).onFalse(hopper.reverseRight(0));
     
-    new JoystickButton(otherManipXbox, 3).onTrue(elevator.setPosition(elevator.heights[1]));
+    //new JoystickButton(otherManipXbox, 3).onTrue(elevator.setPosition(elevator.heights[1]));
   }
 
 
