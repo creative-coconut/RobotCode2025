@@ -3,7 +3,7 @@
     "front": -10.625,
     "left": 10.625
   },
-  "absoluteEncoderOffset": 0,
+  "absoluteEncoderOffset":-0.30419921875 ,
   "drive": {
     "type": "krakenx60",
     "id": 6,
@@ -19,9 +19,10 @@
     "canbus": null
   },
   "encoder": {
-    "type": "canandmag_can",
+    "type": "cancoder",
     "id": 25,
     "canbus": null
   },
+  
   "absoluteEncoderInverted": true
 }
