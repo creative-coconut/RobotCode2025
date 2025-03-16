@@ -5,19 +5,12 @@
   "currentLimit": {
     "drive": 80,
     "angle": 60
-  },
-  "conversionFactors": {
-    "angle": {
-      "gearRatio": 10.67,
-      "factor": 0
-    },
-    "drive": {
-      "diameter": 4,
-      "gearRatio": 6.55
-    }
-  },
+  }
+ 
+  ,
   "rampRate": {
     "drive": 0.25,
     "angle": 0.25
   }
+  
 }

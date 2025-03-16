@@ -22,11 +22,11 @@ import edu.wpi.first.math.filter.Debouncer.DebounceType;
 import edu.wpi.first.wpilibj.smartdashboard.*;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc.robot.Constants.OperatorConstants;
-import frc.robot.commands.Subsystems.RunElevator;
+//import frc.robot.commands.Subsystems.RunElevator;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
 import frc.robot.subsystems.hopper.Hopper;
-import frc.robot.subsystems.elevator.Elevator;
-import frc.robot.subsystems.intake.Intake;
+//import frc.robot.subsystems.elevator.Elevator;
+//import frc.robot.subsystems.intake.Intake;
 //import frc.robot.subsystems.PhotonVision;
 import com.pathplanner.lib.auto.NamedCommands;
 import edu.wpi.first.wpilibj.RobotBase;
@@ -41,10 +41,10 @@ import com.pathplanner.lib.auto.AutoBuilder;
  */
 public class RobotContainer
 {
-  private final Elevator elevator = new Elevator();
-  private final RunElevator system = new RunElevator(elevator);
+ // private final Elevator elevator = new Elevator();
+ // private final RunElevator system = new RunElevator(elevator);
   private final Hopper hopper = new Hopper();
-  private final Intake intake = new Intake();
+  //private final Intake intake = new Intake();
 
   //Create Auto Chooser
   private final SendableChooser<Command> autoChooser;
@@ -140,16 +140,16 @@ public class RobotContainer
     new JoystickButton(otherManipXbox, 6).onFalse(hopper.reverseRight(0));
     
     //intake
-    new JoystickButton(otherManipXbox, 2).onTrue(intake.run(intake.intakeSpeed));
-    new JoystickButton(otherManipXbox, 2).onFalse(intake.checkIfRunning());
-    
+   // new JoystickButton(otherManipXbox, 2).onTrue(intake.run(intake.intakeSpeed));
+    //new JoystickButton(otherManipXbox, 2).onFalse(intake.checkIfRunning());
+    /*
     //elevator + arm + intake
     new JoystickButton(otherManipXbox, 3).onTrue(system.grab());
     new JoystickButton(otherManipXbox, 4).onTrue(system.rest());
     new POVButton(otherManipXbox, 0).onTrue(system.setPosition(0));
     new POVButton(otherManipXbox, 90).onTrue(system.setPosition(1));
     new POVButton(otherManipXbox, 180).onTrue(system.setPosition(2));
-    new POVButton(otherManipXbox, 270).onTrue(system.setPosition(3));
+    new POVButton(otherManipXbox, 270).onTrue(system.setPosition(3));*/
   }
 
 

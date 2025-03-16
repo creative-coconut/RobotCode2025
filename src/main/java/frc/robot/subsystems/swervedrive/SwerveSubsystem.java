@@ -27,6 +27,7 @@ import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -83,9 +84,13 @@ public class SwerveSubsystem extends SubsystemBase
     SwerveDriveTelemetry.verbosity = TelemetryVerbosity.HIGH;
     try
     {
-      swerveDrive = new SwerveParser(directory).createSwerveDrive(Constants.MAX_SPEED, startingPose);
+      double angleConversionFactor = SwerveMath.calculateDegreesPerSteeringRotation(10.67);
+      double driveConversionFactor = SwerveMath.calculateMetersPerRotation(0.102, 6.55);
+      double maximumSpeed = 4.877;
+      //swerveDrive = new SwerveParser(directory).createSwerveDrive(Constants.MAX_SPEED, startingPose);
       // Alternative method if you don't want to supply the conversion factor via JSON files.
-      // swerveDrive = new SwerveParser(directory).createSwerveDrive(maximumSpeed, angleConversionFactor, driveConversionFactor);
+     swerveDrive = new SwerveParser(directory).createSwerveDrive(maximumSpeed, angleConversionFactor, driveConversionFactor);
+     swerveDrive.setMaximumAttainableSpeeds(maximumSpeed, 6);
     } catch (Exception e)
     {
       throw new RuntimeException(e);
@@ -101,7 +106,13 @@ public class SwerveSubsystem extends SubsystemBase
     setupPathPlanner();
     RobotModeTriggers.autonomous().onTrue(Commands.runOnce(this::zeroGyro));
   }
-
+  @Override
+  public void periodic (){
+    SmartDashboard.putNumber("Front Left", swerveDrive.getModules()[0].getAbsoluteEncoder().getAbsolutePosition());
+    SmartDashboard.putNumber("Front Right", swerveDrive.getModules()[1].getAbsoluteEncoder().getAbsolutePosition());
+    SmartDashboard.putNumber("Back Left", swerveDrive.getModules()[2].getAbsoluteEncoder().getAbsolutePosition());
+    SmartDashboard.putNumber("Back Right", swerveDrive.getModules()[3].getAbsoluteEncoder().getAbsolutePosition());
+  }
   /**
    * Construct the swerve drive.
    *
@@ -115,6 +126,7 @@ public class SwerveSubsystem extends SubsystemBase
                                   Constants.MAX_SPEED,
                                   new Pose2d(new Translation2d(Meter.of(2), Meter.of(0)),
                                              Rotation2d.fromDegrees(0)));
+                                             
   }
 
   @Override
@@ -369,8 +381,8 @@ public class SwerveSubsystem extends SubsystemBase
       // Make the robot move
       swerveDrive.drive(SwerveMath.scaleTranslation(new Translation2d(
                             translationX.getAsDouble() * swerveDrive.getMaximumChassisVelocity(),
-                            translationY.getAsDouble() * swerveDrive.getMaximumChassisVelocity()), 0.8),
-                        Math.pow(angularRotationX.getAsDouble(), 3) * swerveDrive.getMaximumChassisAngularVelocity(),
+                            translationY.getAsDouble() * swerveDrive.getMaximumChassisVelocity()), 16),
+                        (Math.pow(angularRotationX.getAsDouble(), 3) * swerveDrive.getMaximumChassisAngularVelocity()),
                         true,
                         false);
     });
@@ -385,14 +397,14 @@ public class SwerveSubsystem extends SubsystemBase
    * @param headingY     Heading Y to calculate angle of the joystick.
    * @return Drive command.
    */
-  public Command driveCommand(DoubleSupplier translationX, DoubleSupplier translationY, DoubleSupplier headingX,
+  public Command driveCommand(DoubleSupplier  translationX, DoubleSupplier translationY, DoubleSupplier headingX,
                               DoubleSupplier headingY)
   {
     // swerveDrive.setHeadingCorrection(true); // Normally you would want heading correction for this kind of control.
     return run(() -> {
 
       Translation2d scaledInputs = SwerveMath.scaleTranslation(new Translation2d(translationX.getAsDouble(),
-                                                                                 translationY.getAsDouble()), 0.8);
+                                                                                 translationY.getAsDouble()), 16);
 
       // Make the robot move
       driveFieldOriented(swerveDrive.swerveController.getTargetSpeeds(scaledInputs.getX(), scaledInputs.getY(),
