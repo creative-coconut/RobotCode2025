@@ -24,9 +24,9 @@ import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Subsystems.RunElevator;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
-import frc.robot.subsystems.hopper.Hopper;
-import frc.robot.subsystems.elevator.Elevator;
-import frc.robot.subsystems.intake.Intake;
+import frc.robot.subsystems.Hopper;
+import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.Intake;
 //import frc.robot.subsystems.PhotonVision;
 import com.pathplanner.lib.auto.NamedCommands;
 import edu.wpi.first.wpilibj.RobotBase;
@@ -145,13 +145,13 @@ public class RobotContainer
     new JoystickButton(otherManipXbox, 2).onTrue(intake.run(intake.intakeSpeed*-1));
     new JoystickButton(otherManipXbox, 2).onFalse(intake.checkIfRunning());
     
-    //elevator + arm + intake system
-    new JoystickButton(otherManipXbox, 3).onTrue(system.grab());
-    new JoystickButton(otherManipXbox, 4).onTrue(system.rest());
-    new POVButton(otherManipXbox, 0).onTrue(system.setPosition(0));
-    new POVButton(otherManipXbox, 90).onTrue(system.setPosition(1));
-    new POVButton(otherManipXbox, 180).onTrue(system.setPosition(2));
-    new POVButton(otherManipXbox, 270).onTrue(system.setPosition(3));
+    //elevator + arm + intake
+    new JoystickButton(otherManipXbox, 3).onTrue(system.grab()); //X
+    new JoystickButton(otherManipXbox, 4).onTrue(system.rest()); //Y
+    new POVButton(otherManipXbox, 0).onTrue(system.setPosition(0)); //up
+    new POVButton(otherManipXbox, 90).onTrue(system.setPosition(1)); //right
+    new POVButton(otherManipXbox, 180).onTrue(system.setPosition(2)); //down
+    new POVButton(otherManipXbox, 270).onTrue(system.setPosition(3)); //left
   }
 
 
