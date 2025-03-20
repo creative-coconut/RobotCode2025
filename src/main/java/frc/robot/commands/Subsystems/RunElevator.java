@@ -11,33 +11,33 @@ import frc.robot.subsystems.Intake;
 
 
 public class RunElevator extends Command {
-  //private final Elevator elevatorSubsystem;
+  private final Elevator elevatorSubsystem;
   private final Arm armSubsystem = new Arm();
   private final Intake intakeSubsystem;
 
   public RunElevator(Elevator eSubsystem, Intake isubsystem) {
-    //elevatorSubsystem = eSubsystem;
+    elevatorSubsystem = eSubsystem;
     intakeSubsystem = isubsystem;
     addRequirements(eSubsystem);
   }
 
   public Command grab(){
-    return armSubsystem.runOnce//(() -> elevatorSubsystem.setPosition(elevatorSubsystem.elevatorSpeed, elevatorSubsystem.heights[1]))
-                            /*.andThen*/(() -> armSubsystem.setPosition(armSubsystem.angles[4]))
+    return elevatorSubsystem.runOnce(() -> elevatorSubsystem.setPosition(elevatorSubsystem.elevatorSpeed, elevatorSubsystem.heights[1]))
+                            .andThen(() -> armSubsystem.setPosition(armSubsystem.angles[4]))
                             .andThen(() -> intakeSubsystem.runIntake(intakeSubsystem.intakeSpeed))
-                            //.andThen(() -> elevatorSubsystem.setPosition(elevatorSubsystem.elevatorSpeed, elevatorSubsystem.heights[4]))
+                            .andThen(() -> elevatorSubsystem.setPosition(elevatorSubsystem.elevatorSpeed, elevatorSubsystem.heights[4]))
                             .andThen(rest());
   }
 
   public Command rest(){
-    return armSubsystem.runOnce(() -> intakeSubsystem.stopIntake())
-                            .andThen(() -> armSubsystem.setPosition(0));
-                            //.andThen(() -> elevatorSubsystem.setPosition(elevatorSubsystem.elevatorSpeed, 0));
+    return elevatorSubsystem.runOnce(() -> intakeSubsystem.stopIntake())
+                            .andThen(() -> armSubsystem.setPosition(0))
+                            .andThen(() -> elevatorSubsystem.setPosition(elevatorSubsystem.elevatorSpeed, 0));
   }
 
   public Command setPosition(int p){
-    return armSubsystem.runOnce//(() -> elevatorSubsystem.setPosition(elevatorSubsystem.elevatorSpeed, elevatorSubsystem.heights[p]))
-                            /*.andThen*/(() -> armSubsystem.setPosition(armSubsystem.angles[p]))
+    return elevatorSubsystem.runOnce(() -> elevatorSubsystem.setPosition(elevatorSubsystem.elevatorSpeed, elevatorSubsystem.heights[p]))
+                            .andThen(() -> armSubsystem.setPosition(armSubsystem.angles[p]))
                             .andThen(() -> intakeSubsystem.runIntake(intakeSubsystem.intakeSpeed))
                             .andThen(() -> rest());
   }

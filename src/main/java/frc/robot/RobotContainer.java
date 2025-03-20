@@ -143,7 +143,7 @@ public class RobotContainer
     
     //intake controls
     new JoystickButton(otherManipXbox, 2).onTrue(intake.run(intake.intakeSpeed*-1));
-    new JoystickButton(otherManipXbox, 2).onFalse(intake.checkIfRunning());
+    new JoystickButton(otherManipXbox, 2).onFalse(intake.rest());
     
     //elevator + arm + intake
     new JoystickButton(otherManipXbox, 3).onTrue(system.grab()); //X

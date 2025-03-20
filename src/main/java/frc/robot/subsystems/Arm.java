@@ -16,8 +16,6 @@ import java.io.ObjectInputFilter.Config;
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.spark.SparkClosedLoopController;
 import com.revrobotics.spark.config.SparkMaxConfig;
-//import com.revrobotics.spark.config.SparkBaseConfig;
-//import com.revrobotics.spark.config.ClosedLoopConfig;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 import com.revrobotics.spark.config.ClosedLoopConfig.FeedbackSensor;
 import com.revrobotics.spark.SparkBase.ResetMode;
@@ -28,7 +26,7 @@ import com.revrobotics.spark.SparkBase.PersistMode;
 public class Arm extends SubsystemBase {
   
   public SparkMax arm = new SparkMax(20, MotorType.kBrushless);
-  public RelativeEncoder encoder = arm.getAlternateEncoder(/*8192*/);
+  //public RelativeEncoder encoder = arm.getAlternateEncoder(/*8192*/); //
   public SparkClosedLoopController controller = arm.getClosedLoopController();
 
   public double[] angles    = {0, 35,            35,            90,   180}; //angles in degrees from vertical
@@ -37,26 +35,26 @@ public class Arm extends SubsystemBase {
   public double currentPosition;
 
   public Arm() {
-    SparkMaxConfig config = new SparkMaxConfig();
+    // SparkMaxConfig config = new SparkMaxConfig();
 
-    config
-      .inverted(true)
-      .idleMode(IdleMode.kBrake);
-    config.encoder
-      .positionConversionFactor(1000)
-      .velocityConversionFactor(1000);
-    config.closedLoop
-      .feedbackSensor(FeedbackSensor.kPrimaryEncoder)
-      .pid(4.25, 0, 0.6);
+    // config
+    //   .inverted(true)
+    //   .idleMode(IdleMode.kBrake);
+    // config.encoder
+    //   .positionConversionFactor(1000)
+    //   .velocityConversionFactor(1000);
+    // config.closedLoop
+    //   .feedbackSensor(FeedbackSensor.kPrimaryEncoder)
+    //   .pid(4.25, 0, 0.6);
 
-    //arm.configure(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+    // arm.configure(config, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
   }
 
-  public double getPosition(){
-    return encoder.getPosition();
-  }
+  // public double getPosition(){
+  //   return encoder.getPosition();
+  // }
 
   public void setPosition(double p){
-    controller.setReference(p, SparkMax.ControlType.kPosition);
+    //controller.setReference(p, SparkMax.ControlType.kPosition);
   }
 }
