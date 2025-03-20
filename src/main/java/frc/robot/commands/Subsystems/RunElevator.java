@@ -23,7 +23,7 @@ public class RunElevator extends Command {
 
   public Command grab(){
     return armSubsystem.runOnce//(() -> elevatorSubsystem.setPosition(elevatorSubsystem.elevatorSpeed, elevatorSubsystem.heights[1]))
-                            /*.andThen*/(() -> armSubsystem.setPosition(armSubsystem.positions[4]))
+                            /*.andThen*/(() -> armSubsystem.setPosition(armSubsystem.angles[4]))
                             .andThen(() -> intakeSubsystem.runIntake(intakeSubsystem.intakeSpeed))
                             //.andThen(() -> elevatorSubsystem.setPosition(elevatorSubsystem.elevatorSpeed, elevatorSubsystem.heights[4]))
                             .andThen(rest());
@@ -37,7 +37,7 @@ public class RunElevator extends Command {
 
   public Command setPosition(int p){
     return armSubsystem.runOnce//(() -> elevatorSubsystem.setPosition(elevatorSubsystem.elevatorSpeed, elevatorSubsystem.heights[p]))
-                            /*.andThen*/(() -> armSubsystem.setPosition(armSubsystem.positions[p]))
+                            /*.andThen*/(() -> armSubsystem.setPosition(armSubsystem.angles[p]))
                             .andThen(() -> intakeSubsystem.runIntake(intakeSubsystem.intakeSpeed))
                             .andThen(() -> rest());
   }
