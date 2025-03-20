@@ -25,9 +25,9 @@ import com.revrobotics.spark.SparkBase.PersistMode;
 
 public class Arm extends SubsystemBase {
   
-  public SparkMax arm = new SparkMax(20, MotorType.kBrushless);
+  //public SparkMax arm = new SparkMax(20, MotorType.kBrushless);
   //public RelativeEncoder encoder = arm.getAlternateEncoder(/*8192*/); //
-  public SparkClosedLoopController controller = arm.getClosedLoopController();
+  //public SparkClosedLoopController controller = arm.getClosedLoopController();
 
   public double[] angles    = {0, 35,            35,            90,   180}; //angles in degrees from vertical
   public double[] positions = {0, 0.48611111111, 0.48611111111, 1.25, 2.5}; //angles in number of rotations

@@ -25,22 +25,12 @@ public class Elevator extends SubsystemBase {
     return currentPosition;
   }
 
-  public Command setPosition(double s, double p){
-    return runOnce(() -> {
-      try {
-        set(s, p);
-      } catch (InterruptedException e) {
-        e.printStackTrace();
-      }
-    });
-  }
-
-  public void set(double speed, double position) throws InterruptedException{
-    elevatorA.set(speed);
-    elevatorB.set(speed);
-    wait((long)Math.abs((speed*5676/5)*(currentPosition-position)));
-    elevatorA.set(0);
-    elevatorB.set(0);
-    currentPosition = position;
+  public void setPosition(double s, double p) throws InterruptedException{
+    elevatorA.set(s);
+    elevatorB.set(-s);
+    // wait((long)Math.abs((s*5676/5)*(currentPosition-p)));
+    // elevatorA.set(0);
+    // elevatorB.set(0);
+    // currentPosition = p;
   }
 }
